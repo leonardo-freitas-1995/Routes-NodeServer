@@ -1,0 +1,32 @@
+md-toolbar(ng-if="layout.isSidenavFixed()")
+    h2(layout="row" layout-align="center")
+        span(translate="main.routesApp")
+md-content(md-theme="highlight")
+    div(layout="column", layout-padding)
+        div(layout="row")
+            img.avatar-image(flex="25", ng-src="images/user_icon.png")
+        md-menu(md-position-mode="target-left bottom", md-offset="-10 0")
+            .md-subhead.pointer(layout="column", layout-align="space-between start", ng-click="layout.openMenu($mdOpenMenu, $event)")
+                span
+                    |{{layout.getCurrentUserInfo('name')}}
+                    md-icon keyboard_arrow_down
+                small {{layout.getCurrentUserInfo('email')}}
+            md-menu-content(width="4")
+                md-menu-item
+                    md-button(ng-href="/profile")
+                        md-icon person
+                        span(translate="common.profile")
+                md-menu-item
+                    md-button(ng-click="layout.signout()")
+                        md-icon exit_to_app
+                        span(translate="common.logout")
+
+md-content(layout="column")
+    md-button(ng-repeat="item in layout.getSidenavItems()",
+        ng-href="{{item.url}}", ng-class="{'md-primary': layout.isActiveView(item.url)}")
+        span(translate="{{item.name}}")
+
+    div(ng-repeat="accessSidenav in layout.getAccessSidenavItems()", ng-if="layout.hasRoleAccess(accessSidenav.role)", layout="column")
+        md-button(ng-repeat="item in accessSidenav.items",
+            ng-href="{{item.url}}", ng-class="{'md-primary': layout.isActiveView(item.url)}")
+            span(translate="{{item.name}}")

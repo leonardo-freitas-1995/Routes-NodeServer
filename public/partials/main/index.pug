@@ -1,0 +1,27 @@
+div(layout="column", layout-align="center center", layout-fill)
+    .loginBox.md-whiteframe-z1(layout="column", md-theme="highlight")
+        md-toolbar
+            h2(class="md-toolbar-tools")
+                span(translate="index.welcome")
+        md-content
+            form(name="vm.loginForm")
+                .md-padding(layout="column")
+                    md-input-container
+                        label(translate="index.email")
+                        input(type="email", name="email", ng-model="vm.email", required, md-no-asterisk)
+                        div(ng-messages="vm.loginForm.email.$error")
+                            div(ng-message="required", translate="index.errors.required")
+                            div(ng-message="email", translate="index.errors.invalidEmail")
+                    md-input-container
+                        label(translate="index.password")
+                        input(type="password", name="password", ng-model="vm.password", required, md-no-asterisk)
+                        div(ng-messages="vm.loginForm.password.$error")
+                            div(ng-message="required", translate="index.errors.required")
+
+                    div(layout-gt-sm="row", layout-sm="column", layout-xs="column", layout-align-gt-sm="center center",
+                        layout-align-sm="space-around stretch", layout-align-xs="space-around stretch")
+                        md-button(class="md-raised md-primary", ng-click="vm.login()")
+                            span(translate="index.enter")
+                        div(flex-gt-sm)
+                        md-button(href="", md-no-ink)
+                            span(translate="index.newAccount")

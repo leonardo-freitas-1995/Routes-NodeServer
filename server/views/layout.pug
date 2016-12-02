@@ -1,0 +1,14 @@
+doctype
+html
+    head
+        title LifeApps
+        meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1.0')
+        link(rel="stylesheet", href="/css/routesApp.min.css")
+        link(rel="stylesheet", href="/vendor/angular-material/angular-material.min.css")
+        link(rel="stylesheet", href="/vendor/angular-material-data-table/dist/md-data-table.min.css")
+        link(rel="stylesheet", href="https://fonts.googleapis.com/icon?family=Material+Icons")
+
+    body(ng-app='routesApp', ng-cloak)
+        include current-user
+        block main-content
+        include scripts

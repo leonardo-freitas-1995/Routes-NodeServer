@@ -1,0 +1,38 @@
+div(layout="column", layout-gt-sm="row", layout-wrap)
+    div(flex="100", flex-gt-sm="70", flex-offset-gt-sm="15", md-theme="highlight")
+        md-card
+            md-card-title
+                md-card-title-text
+                    span.md-headline(translate="profile.myProfile")
+                    form(name="vm.profileForm")
+                        md-content(layout-padding, layout="column")
+                            md-input-container
+                                label(translate="profile.email")
+                                input(type="email", name="email", ng-model="vm.profile.email", required, md-no-asterisk)
+                                div(ng-messages="vm.profileForm.email.$error")
+                                    div(ng-message="required", translate="index.errors.required")
+                                    div(ng-message="email", translate="index.errors.invalidEmail")
+
+                            md-input-container
+                                label(translate="profile.name")
+                                input(type="text", name="name", ng-model="vm.profile.name", required, md-no-asterisk)
+                                div(ng-messages="vm.profileForm.name.$error")
+                                    div(ng-message="required", translate="index.errors.required")
+
+                            md-input-container
+                                label(translate="profile.password")
+                                input(type="password", name="password", ng-model="vm.profile.password", minlength="6")
+                                div(ng-messages="vm.profileForm.password.$error")
+                                    div(ng-message="minlength", translate="profile.minPassword")
+
+                            md-input-container
+                                label(translate="profile.repeatPassword")
+                                input(type="password", name="repeatPassword", ng-model="vm.profile.repeatPassword",
+                                    minlength="6", ng-match="vm.profile.password")
+                                div(ng-messages="vm.profileForm.repeatPassword.$error")
+                                    div(ng-message="minlength", translate="profile.minPassword")
+                                    div(ng-message="match", translate="profile.matchPassword")
+
+            md-card-actions(layout="row", layout-align="end center")
+                md-button.md-raised.md-primary(ng-click="vm.updateProfile()")
+                    span(translate="common.save")

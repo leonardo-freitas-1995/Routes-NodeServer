@@ -1,0 +1,21 @@
+extends layout
+
+block main-content
+    div(layout="column", layout-fill)
+        md-toolbar(layout="row", layout-align="start center", ng-if="!layout.hasSidenav() || !layout.isSidenavFixed()")
+            md-button.md-icon-button(aria-label="Menu", ng-if="layout.hasSidenav() && !layout.isSidenavFixed()",
+                ng-click="layout.toggleSidenav()")
+                md-icon menu
+            h2(flex="100", layout="row" layout-align="center", ng-if="layout.isSidenavFixed()")
+                span(translate="main.routesApp")
+            h3(ng-if="!layout.isSidenavFixed()")
+                span(layout-padding, translate="main.routesApp")
+        md-content(flex, layout="row")
+            md-sidenav.md-sidenav-left(ng-if="layout.hasSidenav()",
+                md-component-id="left",
+                md-is-locked-open="layout.isSidenavFixed()",
+                md-whiteframe="4",
+                ng-include="'/partials/sidenav/main-sidenav'")
+            md-content(flex="grow", layout-padding)
+                div(ng-if="layout.hasSidenav()", md-breadcrumbs="layout.getBreadcrumbs()")
+                div(ng-view)

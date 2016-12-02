@@ -1,0 +1,4 @@
+.md-headline
+    md-button(ng-repeat-start="link in links", translate="{{link.name}}",
+        ng-href="{{link.url}}", ng-disabled="$last")
+    md-icon(ng-repeat-end, ng-if="!$last") keyboard_arrow_right
