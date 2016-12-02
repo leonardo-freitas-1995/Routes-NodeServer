@@ -52,59 +52,8 @@
                 saveSuccess: "Perfil modificado com sucesso."
             },
             signup: {
-                duplicate: "O email informado já possui uma conta na plataforma."
-            },
-            apps: {
-                common: {
-                    enter: "Entrar"
-                },
-                priceCrawler: {
-                    name: "Crawler de Preços",
-                    description: "Robô que vefifica o preço de itens em sites e manda email ao registrar um preço de promoção",
-                    intervals: {
-                        fiveMinutes: "5 minutos",
-                        tenMinutes: "10 minutos",
-                        halfHour: "30 minutos",
-                        oneHour: "1 hora",
-                        twoHours: "2 horas",
-                        halfDay: "12 horas",
-                        oneDay: "1 dia",
-                        oneWeek: "1 semana"
-                    },
-                    crawlers: {
-                        kabum: "Kabum",
-                        pontofrio: "Ponto Frio",
-                        extra: "Extra",
-                        submarino: "Sumarino",
-                        americanas: "Americanas"
-                    },
-                    prices: {
-                        old: "Preço antigo",
-                        normal: "Preço normal",
-                        promo: "Preço promocional"
-                    },
-                    newTask: "Nova tarefa",
-                    updateTask: "Modificar tarefa",
-                    tasks: "Tarefas do Crawler",
-                    loadingError: "Não foi possível carregar as tarefas dos crawlers.",
-                    noTask: "Você ainda não possui nenhuma tarefa de crawler",
-                    interval: "Intervalo entre atualizações",
-                    url: "Link",
-                    crawlerType: "Tipo do Crawler",
-                    notifyLowerPrice: "Notificar em queda de preço",
-                    newTaskSuccess: "Nova tarefa criada com sucesso!",
-                    updateTaskSuccess: "Tarefa modificada com sucesso!",
-                    deleteTaskSuccess: "Tarefa removida com sucesso!",
-                    lastUpdate: "Ultima atualização",
-                    noUpdate: "Esta tarefa ainda não foi executada.",
-                    history: "Ver histórico",
-                    deleteTaskTitle: "Deseja remover a atividade {{task}} - {{crawler}}?",
-                    deleteTaskDescription: "Não é possível reverter esta ação.",
-                    editTooltip: "Editar atividades",
-                    removeTooltip: "Remover atividade",
-                    addTooltip: "Adicionar atividade",
-                    historyTooltip: "Ver histórico de preços"
-                }
+                duplicate: "O email informado já possui uma conta na plataforma.",
+                success: "Nova conta criada com sucesso!"
             }
         });
 })();

@@ -9,7 +9,7 @@
         $mdThemingProvider.theme('highlight')
             .primaryPalette('blue')
             .accentPalette('cyan')
-            .warnPalette('indigo')
+            .warnPalette('red')
             .backgroundPalette('grey');
 
         $mdThemingProvider.theme('success-toast');

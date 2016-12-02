@@ -2,8 +2,8 @@
     angular
         .module('routesApp')
         .controller('IndexController', Controller);
-    Controller.$inject = ['$location', 'authService', 'notifier'];
-    function Controller($location, authService, notifier) {
+    Controller.$inject = ['$location', '$mdDialog', 'authService', 'notifier'];
+    function Controller($location, $mdDialog, authService, notifier) {
         var vm = this;
         vm.email = "";
         vm.password = "";
@@ -25,6 +25,21 @@
                         notifier.error('common.connectionError');
                     });
             }
+        };
+
+        vm.signup = function($event){
+            $mdDialog.show({
+                    attachTo: angular.element(document.body),
+                    controller: 'NewAccountController',
+                    controllerAs: 'dialog',
+                    templateUrl: '/partials/user/newAccount',
+                    parent: angular.element(document.body),
+                    targetEvent: $event,
+                    clickOutsideToClose: true
+                })
+                .then(function() {
+
+                });
         };
     }
 })();

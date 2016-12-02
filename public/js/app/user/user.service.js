@@ -6,28 +6,12 @@
     function Service($q, identityService, User) {
         
         return {
-            getAllUsers: getAllUsers,
-            sendInvite: sendInvite,
-            updateCurrentUser: updateCurrentUser,
-            deleteUser: deleteUser,
-            changeRoles: changeRoles,
-            recoverPassword: recoverPassword,
-            resetPassword: resetPassword
+            createAccount: createAccount,
+            updateCurrentUser: updateCurrentUser
         };
-
-        function getAllUsers() {
-            var dfd = $q.defer();
-            User.query(function(data){
-                    dfd.resolve(data);
-                },
-                function(){
-                    dfd.resolve([]);
-                });
-            return dfd.promise;
-        }
         
-        function sendInvite(email) {
-            var user = new User({email: email});
+        function createAccount(accountData) {
+            var user = new User(accountData);
 
             var dfd = $q.defer();
             user.$save().then(
@@ -62,73 +46,6 @@
                 }
             }, function(reason) {
                 dfd.reject("common.connection");
-            });
-
-            return dfd.promise;
-        }
-
-        function deleteUser(email) {
-            User.remove({email: email});
-        }
-
-        function changeRoles(email, roles){
-            var user = new User({email: email, roles: roles});
-
-            var dfd = $q.defer();
-            user.$save().then(function(){
-                    dfd.resolve();
-                },
-                function(response){
-                    dfd.reject(response.data.reason);
-                }
-            );
-
-            return dfd.promise;
-        }
-
-        function recoverPassword(email, language) {
-            var user = new User({language: language});
-            var dfd = $q.defer();
-
-            user.$save({email: email}).then(function (response) {
-                if (response.success === true){
-                    dfd.resolve();
-                }
-                else {
-                    dfd.reject(response.reason);
-                }
-
-            }, function (response) {
-                if (response.success === true){
-                    dfd.resolve();
-                }
-                else {
-                    dfd.reject("common.connectionError");
-                }
-            });
-
-            return dfd.promise;
-        }
-        
-        function resetPassword(email, token, password) {
-            var user = new User({password: password});
-            var dfd = $q.defer();
-
-            user.$save({email: email, token: token}).then(function (response) {
-                if (response.success === true){
-                    dfd.resolve();
-                }
-                else {
-                    dfd.reject(response.reason);
-                }
-
-            }, function (response) {
-                if (response.success === true){
-                    dfd.resolve();
-                }
-                else {
-                    dfd.reject("common.connectionError");
-                }
             });
 
             return dfd.promise;
