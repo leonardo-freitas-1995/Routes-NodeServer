@@ -9,7 +9,8 @@
         function AuthService(authService){
             var authType = {
                 authenticated: authService.authorizeAuthenticatedUserForRoute(),
-                notAuthenticated: authService.authorizeNotAuthenticatedUserForRoute()
+                notAuthenticated: authService.authorizeNotAuthenticatedUserForRoute(),
+                admin: authService.authorizeCurrentUserForAnyRole(['root', 'admin']),
             };
             if (!authType[role])
                 return false;
@@ -49,6 +50,15 @@
             controllerAs: 'vm',
             resolve: {
                 auth: routeRoleCheck("authenticated")
+            }
+        })
+        // Profile page
+        .when('/products',{
+            templateUrl: '/partials/product/products',
+            controller: 'ProductsController',
+            controllerAs: 'vm',
+            resolve: {
+                auth: routeRoleCheck("admin")
             }
         })
         .otherwise({

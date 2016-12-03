@@ -8,7 +8,8 @@
         var pages = {
             "dashboard": {name: "sidenav.dashboard", url: "/dashboard"},
             "profile": {name: "common.profile", url: "/profile"},
-        };        
+            "products": {name: "sidenav.products", url: "/products"},
+        };
         
         var commonSidenav = [
             pages.dashboard
@@ -18,6 +19,7 @@
             {
                 role: "admin",
                 items: [
+                    pages.products
                 ]
             }
         ];
@@ -30,6 +32,9 @@
             ],
             "/profile": [
                 pages.profile
+            ],
+            "/products": [
+                pages.products
             ]
         };
 

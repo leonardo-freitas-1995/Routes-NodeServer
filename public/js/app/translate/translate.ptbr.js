@@ -17,12 +17,12 @@
                 update: "Atualizar",
                 save: "Salvar",
                 remove: "Remover",
-                invite: "Convidar"
+                invite: "Convidar",
+                search: "Procurar"
             },
             sidenav: {
                 dashboard: "Início",
-                apps: "Aplicativos",
-                invite: "Convite"
+                products: "Produtos"
             },
             index: {
                 welcome: "Bem vindo",
@@ -40,6 +40,16 @@
                     invalidEmail: "Email inválido",
                     fillFields: "Preecha os campos de login"
                 }
+            },
+            products: {
+                table: {
+                    name: "Nome",
+                    ncm: "NCM",
+                    taxRates: "Aliquotas Estaduais"
+                },
+                noProduct: "Nenhum produto encontrado.",
+                ts: "ST",
+                pagination: "Página {{page}} de {{pages}}"
             },
             profile: {
                 myProfile: "Meu perfil",
