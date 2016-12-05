@@ -6,7 +6,8 @@
     function Service($q, Product) {
         
         return {
-            listProducts: listProducts
+            listProducts: listProducts,
+            createProduct: createProduct
         };
 
         function listProducts(search, page) {
@@ -21,6 +22,24 @@
                     dfd.reject("common.connection");
                 }
             }, function(reason) {
+                dfd.reject("common.connection");
+            });
+
+            return dfd.promise;
+        }
+
+        function createProduct(productData){
+            var newProduct = new Product(productData);
+
+            var dfd = $q.defer();
+            newProduct.$save().then(function(response) {
+                if (response.success){
+                    dfd.resolve();
+                }
+                else{
+                    dfd.reject(response.reason);
+                }
+            }, function() {
                 dfd.reject("common.connection");
             });
 

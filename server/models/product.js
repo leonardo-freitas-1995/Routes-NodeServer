@@ -12,7 +12,8 @@ module.exports =  function(){
             {
                 state: String,
                 taxRate: Number,
-                taxSubstitution: Boolean
+                taxSubstitution: Boolean,
+                using: Boolean
             }
         ]
     });

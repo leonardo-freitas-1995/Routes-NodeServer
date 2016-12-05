@@ -4,7 +4,10 @@ module.exports = function (app) {
     
     
     app.route('/api/products/:search/:page')
-        .get(productController.listProducts);
+        .get(productController.listProducts); 
+    
+    app.route('/api/products/')
+        .post(productController.createProduct);
 
 
 };

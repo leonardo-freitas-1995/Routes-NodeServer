@@ -1,0 +1,50 @@
+md-dialog.newProduct-dialog(aria-label="New Task", md-theme="highlight")
+    form(name="dialog.newProductForm")
+        md-toolbar
+            .md-toolbar-tools
+                h2(translate="products.newProduct")
+        md-dialog-content
+            .md-dialog-content(layout="column")
+                md-content(layout-padding, layout="column")
+                    md-input-container
+                        label(translate="products.table.name")
+                        input(type="text", name="name", ng-model="dialog.name", required, md-no-asterisk)
+                        div(ng-messages="dialog.newProductForm.name.$error")
+                            div(ng-message="required", translate="index.errors.required")
+
+                    md-input-container
+                        label(translate="products.table.ncm")
+                        input(type="text", name="ncm", ng-model="dialog.NCM", required, md-no-asterisk)
+                        div(ng-messages="dialog.newProductForm.ncm.$error")
+                            div(ng-message="required", translate="index.errors.required")
+
+                md-content(layout-padding, layout="row", layout-wrap)
+                    md-content(ng-repeat="taxRate in dialog.taxRates", ng-if="taxRate.using", flex="20", layout="column")
+                        label {{taxRate.state}}
+                        md-input-container
+                            label(translate="products.table.taxRate")
+                            input(type="number", min="0", max="100", name="taxRate{{taxRate.state}}", ng-model="taxRate.taxRate", required, md-no-asterisk)
+                            div(ng-messages="dialog.newProductForm['taxRate' + taxRate.state].$error")
+                                div(ng-message="required", translate="index.errors.required")
+                                div(ng-message="min", translate="products.errors.min")
+                                div(ng-message="max", translate="products.errors.max")
+                                div(ng-message="number", translate="products.errors.number")
+                        div
+                            md-checkbox(ng-model="taxRate.TS", aria-label="TS")
+                            span(translate="products.taxSubstitution")
+
+                    md-content(flex="20", layout="column")
+                        md-menu
+                            .md-subhead.pointer(ng-click="dialog.openMenu($mdOpenMenu, $event)")
+                                md-icon add
+                            md-menu-content
+                                md-menu-item(ng-repeat="taxRate in dialog.taxRates", ng-hide="taxRate.using")
+                                    md-button(ng-click="dialog.toggleState($index, true)")
+                                        span {{taxRate.state}}
+
+
+        md-dialog-actions(layout="row")
+            md-button.md-raised(ng-click="dialog.cancel()")
+                span(translate="common.cancel")
+            md-button.md-raised.md-primary(ng-click="dialog.create()")
+                span(translate="common.create")

@@ -31,6 +31,21 @@ module.exports = function(app){
            }
        });
    };
+    
+    controller.createProduct = function(req, res){
+        var productData = req.body;
+        Product.create(productData, function(err){
+            if (err && err.toString().indexOf('E11000') !== -1){
+                res.send({success: false, error: err, reason: "products.duplicate"});
+            }
+            else if (err){
+                res.send({success: false, error: err, reason: "common.connectionError"});
+            }
+            else{
+                res.send({success: true});
+            }
+        })
+    };
 
     return controller;
 };

@@ -45,11 +45,21 @@
                 table: {
                     name: "Nome",
                     ncm: "NCM",
-                    taxRates: "Aliquotas Estaduais"
+                    taxRates: "Aliquotas Estaduais",
+                    taxRate: "Aliquota estadual (%)"
                 },
                 noProduct: "Nenhum produto encontrado.",
                 ts: "ST",
-                pagination: "Página {{page}} de {{pages}}"
+                taxSubstitution: "Substituição tributária",
+                pagination: "Página {{page}} de {{pages}}",
+                newProductSuccess: "Novo produto criado com sucesso.",
+                newProduct: "Novo produto",
+                errors: {
+                    min: "O mínimo é 0%",
+                    max: "O máximo é 100%",
+                    number: "Informe um número aqui"
+                },
+                duplicate: "Já existe um produco cadastrado com este NCM"
             },
             profile: {
                 myProfile: "Meu perfil",

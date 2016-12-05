@@ -2,8 +2,8 @@
     angular
         .module('routesApp')
         .controller('ProductsController', Controller);
-    Controller.$inject = ['productService', 'notifier'];
-    function Controller(productService, notifier) {
+    Controller.$inject = ['$mdDialog', 'productService', 'notifier'];
+    function Controller($mdDialog, productService, notifier) {
         var vm = this;
 
         vm.productQuery = {
@@ -32,6 +32,21 @@
 
         vm.refreshProducts = function(){
             loadProducts();
+        };
+        
+        vm.addProduct = function($event){
+            $mdDialog.show({
+                    attachTo: angular.element(document.body),
+                    controller: 'NewProductController',
+                    controllerAs: 'dialog',
+                    templateUrl: '/partials/product/new-product',
+                    parent: angular.element(document.body),
+                    targetEvent: $event,
+                    clickOutsideToClose: true
+                })
+                .then(function() {
+                    loadProducts();
+                });
         };
         
         function loadProducts(){
