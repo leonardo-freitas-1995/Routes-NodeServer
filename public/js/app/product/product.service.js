@@ -7,6 +7,7 @@
         
         return {
             listProducts: listProducts,
+            searchProducts: searchProducts,
             createProduct: createProduct
         };
 
@@ -17,6 +18,24 @@
             products.$get({search: search, page: page}).then(function(response) {
                 if (response.success){
                     dfd.resolve({products: response.products, pages: response.pages});
+                }
+                else{
+                    dfd.reject("common.connection");
+                }
+            }, function(reason) {
+                dfd.reject("common.connection");
+            });
+
+            return dfd.promise;
+        }
+
+        function searchProducts(search) {
+            var products = new Product();
+
+            var dfd = $q.defer();
+            products.$get({search: search}).then(function(response) {
+                if (response.success){
+                    dfd.resolve(response.products);
                 }
                 else{
                     dfd.reject("common.connection");

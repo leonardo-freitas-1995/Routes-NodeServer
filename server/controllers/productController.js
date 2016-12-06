@@ -31,6 +31,29 @@ module.exports = function(app){
            }
        });
    };
+
+   controller.searchProducts = function(req, res){
+       var query = {
+           "$or": [
+               {
+                   name: { "$regex": req.params.search, "$options": "gi" }
+               },
+               {
+                   NCM: { "$regex": req.params.search, "$options": "gi" }
+               }
+           ]
+       }
+       Product.find(query).lean().exec(function(err, products){
+           if (err){
+               res.send({success: false});
+           }
+           else{
+               Product.count(query, function(err, count){
+                   res.send({success: true, products: products})
+               })
+           }
+       });
+   };
     
     controller.createProduct = function(req, res){
         var productData = req.body;

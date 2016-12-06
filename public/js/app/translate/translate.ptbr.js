@@ -71,6 +71,12 @@
                 matchPassword: "As senhas devem ser iguais",
                 saveSuccess: "Perfil modificado com sucesso."
             },
+            dashboard: {
+                newSearch: "Nova consulta",
+                fromState: "Estado de Origem",
+                toState: "Estado de Destino",
+                product: "Produto",
+            },
             signup: {
                 duplicate: "O email informado já possui uma conta na plataforma.",
                 success: "Nova conta criada com sucesso!"

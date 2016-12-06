@@ -1,0 +1,35 @@
+md-content(layout-padding)
+    h4(translate="dashboard.newSearch")
+    form(name="dialog.newProductForm")
+        md-content(layout-padding, layout="row")
+            md-input-container(flex="25")
+                label(translate="dashboard.fromState")
+                md-select(ng-model="vm.fromState")
+                    md-option(ng-repeat="state in vm.states", ng-value="state") {{state}}
+            md-input-container(flex="25")
+                label(translate="dashboard.toState")
+                md-select(ng-model="vm.toState")
+                    md-option(ng-repeat="state in vm.states", ng-value="state") {{state}}
+            md-input-container(flex="50")
+                label(translate="dashboard.product")
+                input(type="text", ng-model="vm.product", ng-change="vm.search()")
+        h4(ng-show="vm.productQuery.loaded && !vm.productQuery.products.length", translate="products.noProduct")
+        md-table-container(ng-hide="!vm.productQuery.loaded || !vm.productQuery.products.length")
+            table(md-table, md-row-select, multiple, ng-model="vm.selected")
+                thead(md-head)
+                    tr(md-row)
+                        th(md-column)
+                            span(translate="products.table.name")
+                        th(md-column)
+                            span(translate="products.table.ncm")
+                        th(md-column)
+                            span(translate="products.table.taxRates")
+                tbody(md-body)
+                    tr(ng-repeat='product in vm.productQuery.products', md-row, md-select="product", md-select-id="NCM", md-auto-select)
+                        td(md-cell) {{product.name}}
+                        td(md-cell) {{product.NCM}}
+                        td(md-cell, layout="column")
+                            span(ng-repeat="taxRate in product.taxRates", ng-if="taxRate.using")
+                                | {{taxRate.state}}: {{taxRate.taxRate}}%
+                                = ' '
+                                span(ng-if="taxRate.taxSubstitution", translate="products.ts")
